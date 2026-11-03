@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport：让手机浏览器也按正常比例显示，局域网上用手机打开也不糊 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>局域网聊天室</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       界面一：登录 / 注册
+       ============================================================ -->
+  <section id="authView" class="auth-view">
+    <div class="auth-card">
+      <h1 class="auth-title">局域网聊天室</h1>
+      <p class="auth-sub">账号与消息都存在本机 SQLite 数据库</p>
+
+      <!-- 两个 Tab 共用一套表单，靠 data-mode 切换提交的接口 -->
+      <div class="tabs">
+        <button class="tab active" data-mode="login">登录</button>
+        <button class="tab" data-mode="register">注册</button>
+      </div>
+
+      <form id="authForm" autocomplete="off">
+        <label class="field">
+          <span>用户名</span>
+          <input id="usernameInput" type="text" maxlength="20" placeholder="2-20 位，中文/字母/数字" required>
+        </label>
+        <label class="field">
+          <span>密码</span>
+          <input id="passwordInput" type="password" maxlength="64" placeholder="至少 6 位" required>
+        </label>
+        <button id="submitBtn" class="primary-btn" type="submit">登录</button>
+        <p id="authMsg" class="msg" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       界面二：聊天主界面（登录成功后才显示）
+       ============================================================ -->
+  <section id="chatView" class="chat-view hidden">
+
+    <!-- 左侧：账号列表 -->
+    <aside class="sidebar">
+      <header class="sidebar-head">
+        <div class="me">
+          <span class="avatar" id="meAvatar">我</span>
+          <div>
+            <strong id="meName">-</strong>
+            <small>已登录</small>
+          </div>
+        </div>
+        <button id="logoutBtn" class="ghost-btn" title="退出登录">退出</button>
+      </header>
+
+      <div class="sidebar-label">全部账号 <span id="userCount">0</span></div>
+      <!-- 账号列表由 app.js 动态渲染 -->
+      <ul id="userList" class="user-list"></ul>
+    </aside>
+
+    <!-- 右侧：对话区 -->
+    <main class="chat-panel">
+      <header class="chat-head">
+        <div>
+          <strong id="peerName">选择一个账号开始聊天</strong>
+          <small id="peerHint">点击左侧任意账号</small>
+        </div>
+      </header>
+
+      <!-- 消息列表容器 -->
+      <div id="messageList" class="message-list">
+        <p class="empty-tip" id="emptyTip">还没有选择聊天对象</p>
+      </div>
+
+      <!-- 输入区 -->
+      <form id="sendForm" class="composer">
+        <textarea id="messageInput" rows="1" maxlength="2000"
+                  placeholder="输入消息，Enter 发送，Shift+Enter 换行" disabled></textarea>
+        <button id="sendBtn" class="primary-btn" type="submit" disabled>发送</button>
+      </form>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

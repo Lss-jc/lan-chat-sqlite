@@ -1,0 +1,17 @@
+# 依赖目录（本项目零依赖，留作兜底）
+node_modules/
+
+# SQLite 数据库文件：属于运行时数据，不进仓库
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 本地环境变量
+.env

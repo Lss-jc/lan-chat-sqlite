@@ -1,0 +1,9 @@
+# Surge 发布排除清单（.surgeignore 语法同 .gitignore）
+# 目的：只把前端三件套发布上去，后端代码和 SQLite 数据库文件不外传。
+# 线上是纯静态托管，没有 Node 后端，因此线上只能打开页面，聊天接口不可用。
+
+server.js
+start.bat
+data/
+.surgeignore
+*.md
