@@ -1,0 +1,7 @@
+fix: 不再把 Surge 的 CNAME 提交到仓库
+
+根目录 CNAME（内容 lanchat-sqlite.surge.sh）是 surge CLI 部署时自动写入的，
+提交上去后 GitHub Pages 会把它当作仓库的自定义域名，触发一次永远无法通过的
+DNS 校验，导致 Pages 一直显示 "DNS check in progress" 且无法启用 HTTPS。
+
+该文件仅本地保留（已加入 .gitignore），供 `surge .` 记住域名使用。
